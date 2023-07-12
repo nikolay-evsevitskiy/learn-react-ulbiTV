@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import style from './style/App.module.css'
 import PostList from "./components/PostList";
+import {MyButton} from "./components/UI/button/MyButton";
+import {MyInput} from "./components/UI/input/MyInput";
 
 function App() {
     const [posts, setPosts] = useState([
@@ -21,10 +23,35 @@ function App() {
         },
 
     ])
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const addNewPost = (e) => {
+        e.preventDefault();
+        const newPost = {id: posts.length + 1, title, description}
+        setPosts([...posts, newPost])
+        setTitle('')
+        setDescription('')
+    }
 
     return (
         <div className={style.App}>
-            <PostList posts={posts}/>
+            <form>
+                <MyInput
+                    type="text"
+                    placeholder={'Title of post'}
+                    value={title}
+                    onChange={e => setTitle(e.currentTarget.value)}
+                />
+                <MyInput
+                    type="text"
+                    placeholder={'Description of post'}
+                    value={description}
+                    onChange={e => setDescription(e.currentTarget.value)}
+                />
+                <MyButton onClick={addNewPost}>Create</MyButton>
+            </form>
+            <PostList posts={posts} title={'Posts about JavaScript!'}/>
+
         </div>
     );
 }
