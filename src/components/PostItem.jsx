@@ -1,16 +1,14 @@
 import React from "react";
-import style from "../style/Post.module.css";
+import style from "../style/PostItem.module.css";
 
 
-const Post = () => {
+const PostItem = (props) => {
 
     return (
         <div className={style.post}>
             <div className={'post-content'}>
-                <strong>1. Javascript</strong>
-                <div>
-                    Javascript - this is programming language.
-                </div>
+                <strong>{props.post.id + '. ' + props.post.title}</strong>
+                <div>{props.post.description}</div>
             </div>
             <div className={'post-btns'}>
                 <button>Delete</button>
@@ -19,4 +17,4 @@ const Post = () => {
     );
 };
 
-export default Post
+export default PostItem
