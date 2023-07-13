@@ -47,6 +47,7 @@ function App() {
                     value={title}
                     onChange={e => setTitle(e.currentTarget.value)}
                 />
+                {/*uncontrolled input*/}
                 <MyInput
                     ref={bodyInputRef}
                     type="text"
