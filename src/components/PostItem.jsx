@@ -3,7 +3,9 @@ import style from "../style/PostItem.module.css";
 
 
 const PostItem = (props) => {
-
+    const deletePostHandler = () => {
+        props.deletePost(props.post.id)
+    }
     return (
         <div className={style.post}>
             <div className={'post-content'}>
@@ -11,7 +13,11 @@ const PostItem = (props) => {
                 <div>{props.post.description}</div>
             </div>
             <div className={'post-btns'}>
-                <button>Delete</button>
+                <button
+                    onClick={deletePostHandler}
+                >
+                    Delete
+                </button>
             </div>
         </div>
     );

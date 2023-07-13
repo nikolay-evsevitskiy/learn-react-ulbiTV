@@ -25,6 +25,10 @@ function App() {
     ])
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const deletePost = (postId) => {
+        const newPosts = posts.filter(i => i.id !== postId)
+        setPosts(newPosts)
+    }
     const addNewPost = (e) => {
         e.preventDefault();
         const newPost = {id: posts.length + 1, title, description}
@@ -50,7 +54,11 @@ function App() {
                 />
                 <MyButton onClick={addNewPost}>Create</MyButton>
             </form>
-            <PostList posts={posts} title={'Posts about JavaScript!'}/>
+            <PostList
+                posts={posts}
+                title={'Posts about JavaScript!'}
+                deletePost={deletePost}
+            />
 
         </div>
     );
