@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import style from './style/App.module.css'
 import PostList from "./components/PostList";
 import {MyButton} from "./components/UI/button/MyButton";
@@ -23,19 +23,24 @@ function App() {
         },
 
     ])
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const bodyInputRef = useRef()
+    const [addPost, setAddPost] = useState({
+        title: '',
+        description: ''
+    })
     const deletePost = (postId) => {
         const newPosts = posts.filter(i => i.id !== postId)
         setPosts(newPosts)
     }
     const addNewPost = (e) => {
         e.preventDefault();
-        const newPost = {id: posts.length + 1, title, description}
+        const newPost = {id: posts.length + 1, title: addPost.title, description: addPost.description}
         setPosts([...posts, newPost])
-        setTitle('')
-        setDescription('')
+        setAddPost(
+            {
+                description: '',
+                title: ''
+            }
+        )
     }
 
     return (
@@ -44,16 +49,15 @@ function App() {
                 <MyInput
                     type="text"
                     placeholder={'Title of post'}
-                    value={title}
-                    onChange={e => setTitle(e.currentTarget.value)}
+                    value={addPost.title}
+                    onChange={e => setAddPost({...addPost, title: e.currentTarget.value})}
                 />
                 {/*uncontrolled input*/}
                 <MyInput
-                    ref={bodyInputRef}
                     type="text"
                     placeholder={'Description of post'}
-                    value={description}
-                    onChange={e => setDescription(e.currentTarget.value)}
+                    value={addPost.description}
+                    onChange={e => setAddPost({...addPost, description: e.currentTarget.value})}
                 />
                 <MyButton onClick={addNewPost}>Create</MyButton>
             </form>
