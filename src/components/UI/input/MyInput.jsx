@@ -1,7 +1,11 @@
 import style from './MyInput.module.css'
+import React from "react";
 
-export const MyInput = (props) => {
+export const MyInput = React.forwardRef((props, ref) => {
     return (
-        <input className={style.myInpt} {...props}/>
+        <input
+            ref={ref}
+            className={style.myInpt}
+            {...props}/>
     );
-};
+});

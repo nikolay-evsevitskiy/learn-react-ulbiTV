@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import style from './style/App.module.css'
 import PostList from "./components/PostList";
 import {MyButton} from "./components/UI/button/MyButton";
@@ -25,6 +25,7 @@ function App() {
     ])
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const bodyInputRef = useRef()
     const deletePost = (postId) => {
         const newPosts = posts.filter(i => i.id !== postId)
         setPosts(newPosts)
@@ -47,6 +48,7 @@ function App() {
                     onChange={e => setTitle(e.currentTarget.value)}
                 />
                 <MyInput
+                    ref={bodyInputRef}
                     type="text"
                     placeholder={'Description of post'}
                     value={description}
