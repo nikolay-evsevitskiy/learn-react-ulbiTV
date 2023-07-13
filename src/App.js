@@ -45,7 +45,9 @@ function App() {
 
     return (
         <div className={style.App}>
-            <form>
+            <form style={{
+                margin: '10px'
+            }}>
                 <MyInput
                     type="text"
                     placeholder={'Title of post'}

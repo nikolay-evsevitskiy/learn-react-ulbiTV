@@ -1,5 +1,6 @@
 import React from "react";
 import style from "../style/PostItem.module.css";
+import {MyButton} from "./UI/button/MyButton";
 
 
 const PostItem = (props) => {
@@ -13,11 +14,12 @@ const PostItem = (props) => {
                 <div>{props.post.description}</div>
             </div>
             <div className={'post-btns'}>
-                <button
+                <MyButton
                     onClick={deletePostHandler}
+                    color={'red'}
                 >
                     Delete
-                </button>
+                </MyButton>
             </div>
         </div>
     );
