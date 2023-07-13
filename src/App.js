@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import style from './style/App.module.css'
 import PostList from "./components/PostList";
-import {MyButton} from "./components/UI/button/MyButton";
-import {MyInput} from "./components/UI/input/MyInput";
+import {PostForm} from "./components/PostForm";
 
 function App() {
     const [posts, setPosts] = useState([
@@ -23,46 +22,18 @@ function App() {
         },
 
     ])
-    const [addPost, setAddPost] = useState({
-        title: '',
-        description: ''
-    })
     const deletePost = (postId) => {
         const newPosts = posts.filter(i => i.id !== postId)
         setPosts(newPosts)
     }
-    const addNewPost = (e) => {
-        e.preventDefault();
-        const newPost = {id: posts.length + 1, title: addPost.title, description: addPost.description}
-        setPosts([...posts, newPost])
-        setAddPost(
-            {
-                description: '',
-                title: ''
-            }
-        )
+    const createNewPost = (post) => {
+        setPosts([...posts, post])
     }
+
 
     return (
         <div className={style.App}>
-            <form style={{
-                margin: '10px'
-            }}>
-                <MyInput
-                    type="text"
-                    placeholder={'Title of post'}
-                    value={addPost.title}
-                    onChange={e => setAddPost({...addPost, title: e.currentTarget.value})}
-                />
-                {/*uncontrolled input*/}
-                <MyInput
-                    type="text"
-                    placeholder={'Description of post'}
-                    value={addPost.description}
-                    onChange={e => setAddPost({...addPost, description: e.currentTarget.value})}
-                />
-                <MyButton onClick={addNewPost}>Create</MyButton>
-            </form>
+            <PostForm createNewPost={createNewPost}/>
             <PostList
                 posts={posts}
                 title={'Posts about JavaScript!'}

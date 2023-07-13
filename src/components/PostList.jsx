@@ -8,9 +8,10 @@ const PostList = ({posts, title, deletePost}) => {
     return (
         <>
             <h1 className={style.main}>{title}</h1>
-            {posts.map((post) => <PostItem
+            {posts.map((post, index) => <PostItem
                     key={post.id}
                     post={post}
+                    index={index}
                     deletePost={deletePost}
                 />
             )}
