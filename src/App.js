@@ -3,6 +3,7 @@ import style from './style/App.module.css'
 import PostList from "./components/PostList";
 import {PostForm} from "./components/PostForm";
 import {MySelect} from "./components/UI/select/MySelect";
+import {MyInput} from "./components/UI/input/MyInput";
 
 function App() {
     const [posts, setPosts] = useState([
@@ -24,6 +25,15 @@ function App() {
 
     ])
     const [selectedSort, setSelectedSort] = useState('')
+    const [searchQuery, setSearchQuery] = useState('')
+    const getSortedPosts = () => {
+        console.log('function is called')
+        if (selectedSort) {
+            return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]))
+        }
+        return posts;
+    }
+    const sortedPosts = getSortedPosts()
     const deletePost = (postId) => {
         const newPosts = posts.filter(i => i.id !== postId)
         setPosts(newPosts)
@@ -33,8 +43,6 @@ function App() {
     }
     const sortPosts = (sort) => {
         setSelectedSort(sort)
-        setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
-
     }
     let title = 'Posts about JavaScript!'
     if (posts.length === 0) {
@@ -46,6 +54,11 @@ function App() {
             <PostForm createNewPost={createNewPost}/>
             <hr style={{margin: '15px 0'}}/>
             <div>
+                <MyInput
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.currentTarget.value)}
+                    placeholder={'search...'}
+                />
                 <MySelect
                     value={selectedSort}
                     onChange={sortPosts}
@@ -64,7 +77,7 @@ function App() {
                 />
             </div>
             <PostList
-                posts={posts}
+                posts={sortedPosts}
                 title={title}
                 deletePost={deletePost}
             />
