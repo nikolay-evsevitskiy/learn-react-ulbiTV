@@ -41,11 +41,6 @@ function App() {
     const createNewPost = (post) => {
         setPosts([...posts, post])
     }
-    let title = 'Posts about JavaScript!'
-    if (sortedAndSearchedPosts.length === 0) {
-        title = 'No posts.'
-    }
-
     return (
         <div className={style.App}>
             <PostForm createNewPost={createNewPost}/>
@@ -56,7 +51,6 @@ function App() {
             />
             <PostList
                 posts={sortedAndSearchedPosts}
-                title={title}
                 deletePost={deletePost}
             />
         </div>

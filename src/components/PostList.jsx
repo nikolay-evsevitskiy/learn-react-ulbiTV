@@ -3,7 +3,11 @@ import style from "../style/PostList.module.css";
 import PostItem from "./PostItem";
 
 
-const PostList = ({posts, title, deletePost}) => {
+const PostList = ({posts, deletePost}) => {
+    let title = 'Posts about JavaScript!'
+    if (posts.length === 0) {
+        title = 'Posts not found'
+    }
 
     return (
         <>
