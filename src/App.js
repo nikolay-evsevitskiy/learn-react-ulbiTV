@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './style/App.module.css'
 import PostList from "./components/PostList";
 import {PostForm} from "./components/PostForm";
@@ -6,29 +6,24 @@ import {PostFilter} from "./components/PostFilter";
 import {MyModal} from "./components/UI/myModal/MyModal";
 import {MyButton} from "./components/UI/button/MyButton";
 import {usePosts} from "./hooks/usePosts";
+import axios from "axios";
 
 function App() {
-    const [posts, setPosts] = useState([
-        {
-            id: 1,
-            title: 'JavaScript',
-            description: 'Javascript - this is programming language.'
-        },
-        {
-            id: 2,
-            title: 'JavaScript2',
-            description: 'Javascript - this is programming language.'
-        },
-        {
-            id: 3,
-            title: 'JavaScript3',
-            description: 'Javascript - this is programming language.'
-        },
-
-    ])
+    const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({sort: '', query: ''})
     const [modal, setModal] = useState(false)
     const sortedAndSearchedPosts = usePosts(filter.sort, posts, filter.query)
+
+    useEffect(() => {
+        fetchPosts()
+    }, [])
+
+
+    async function fetchPosts() {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+        setPosts(response.data)
+    }
+
     const deletePost = (postId) => {
         const newPosts = posts.filter(i => i.id !== postId)
         setPosts(newPosts)
