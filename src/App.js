@@ -8,25 +8,20 @@ import {MyButton} from "./components/UI/button/MyButton";
 import {usePosts} from "./hooks/usePosts";
 import PostService from "./api/postService";
 import {Loader} from "./components/UI/loader/Loader";
+import useFetching from "./hooks/useFetching";
 
 function App() {
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({sort: '', query: ''})
     const [modal, setModal] = useState(false)
-    const [isPostLoader, setSetIsPostLoader] = useState(false)
     const sortedAndSearchedPosts = usePosts(filter.sort, posts, filter.query)
+    const [fetchPosts, isPostLoader, postError] = useFetching(async () => {
+        setPosts(await PostService.getAll())
+    })
 
     useEffect(() => {
         fetchPosts()
     }, [])
-
-
-    async function fetchPosts() {
-        setSetIsPostLoader(true)
-        const posts = await PostService.getAll()
-        setPosts(posts)
-        setSetIsPostLoader(false)
-    }
 
     const deletePost = (postId) => {
         const newPosts = posts.filter(i => i.id !== postId)
@@ -55,6 +50,11 @@ function App() {
                 filter={filter}
                 setFilter={setFilter}
             />
+            {postError &&
+                <h1>
+                    {'An error has occurred. ' + postError}
+                </h1>
+            }
             {
                 isPostLoader
                     ? <Loader/>
