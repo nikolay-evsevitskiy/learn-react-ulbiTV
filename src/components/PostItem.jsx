@@ -3,14 +3,14 @@ import style from "../style/PostItem.module.css";
 import {MyButton} from "./UI/button/MyButton";
 
 
-const PostItem = ({post, deletePost, index}) => {
+const PostItem = ({post, deletePost}) => {
     const deletePostHandler = () => {
         deletePost(post.id)
     }
     return (
         <div className={style.post}>
             <div className={'post-content'}>
-                <strong>{index + 1 + '. ' + post.title}</strong>
+                <strong>{post.id + '. ' + post.title}</strong>
                 <div>{post.description}</div>
             </div>
             <div className={'post-btns'}>

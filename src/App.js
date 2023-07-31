@@ -10,6 +10,7 @@ import PostService from "./api/postService";
 import {Loader} from "./components/UI/loader/Loader";
 import useFetching from "./hooks/useFetching";
 import {getPageCount, getPagesArray} from "./utils/pages";
+import Pagination from "./components/UI/pagination/Pagination";
 
 function App() {
     const [posts, setPosts] = useState([])
@@ -29,7 +30,7 @@ function App() {
 
     useEffect(() => {
         fetchPosts()
-    }, [])
+    }, [page])
 
     const deletePost = (postId) => {
         const newPosts = posts.filter(i => i.id !== postId)
@@ -72,17 +73,11 @@ function App() {
                         deletePost={deletePost}
                     />
             }
-            <div className={style.Pagination}>
-                {pagesArray.map(p =>
-                    <MyButton
-                        className={page === p ? style.currentPage: style.page}
-                        key={p}
-                        onClick={() => setPage(p)}
-                    >
-                        {p}
-                    </MyButton>
-                )}
-            </div>
+            <Pagination
+                page={page}
+                setPage={setPage}
+                pagesArray={pagesArray}
+            />
 
         </div>
     );
