@@ -39,6 +39,7 @@ function App() {
         setPosts([...posts, post])
         setModal(false)
     }
+
     return (
         <div className={style.App}>
             <MyButton
@@ -71,6 +72,17 @@ function App() {
                         deletePost={deletePost}
                     />
             }
+            <div className={style.Pagination}>
+                {pagesArray.map(p =>
+                    <MyButton
+                        className={page === p ? style.currentPage: style.page}
+                        key={p}
+                        onClick={() => setPage(p)}
+                    >
+                        {p}
+                    </MyButton>
+                )}
+            </div>
 
         </div>
     );
