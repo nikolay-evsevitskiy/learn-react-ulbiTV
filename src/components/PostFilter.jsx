@@ -5,7 +5,7 @@ import React from "react";
 export const PostFilter = ({filter, setFilter}) => {
 
     return (
-        <div>
+        <>
             <MyInput
                 value={filter.query}
                 onChange={e => setFilter({...filter, query: e.currentTarget.value})}
@@ -22,11 +22,11 @@ export const PostFilter = ({filter, setFilter}) => {
                     },
                     {
                         name: 'by description',
-                        value: 'description',
+                        value: 'body',
                     },
 
                 ]}
             />
-        </div>
+        </>
     );
 };

@@ -11,7 +11,7 @@ const PostItem = ({post, deletePost}) => {
         <div className={style.post}>
             <div className={'post-content'}>
                 <strong>{post.id + '. ' + post.title}</strong>
-                <div>{post.description}</div>
+                <div>{post.body}</div>
             </div>
             <div className={'post-btns'}>
                 <MyButton

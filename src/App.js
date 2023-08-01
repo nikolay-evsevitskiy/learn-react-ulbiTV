@@ -55,7 +55,7 @@ function App() {
                 <PostForm createNewPost={createNewPost}/>
             </MyModal>
 
-            <hr style={{margin: '15px 0'}}/>
+            <hr/>
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}
