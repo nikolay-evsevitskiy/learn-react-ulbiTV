@@ -44,7 +44,6 @@ function Posts() {
     return (
         <div className={style.App}>
             <MyButton
-                style={{marginTop: '30px'}}
                 onClick={() => setModal(true)}>
                 Create new post
             </MyButton>

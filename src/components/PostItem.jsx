@@ -13,13 +13,14 @@ const PostItem = ({post, deletePost}) => {
                 <strong>{post.id + '. ' + post.title}</strong>
                 <div>{post.body}</div>
             </div>
-            <div className={'post-btns'}>
-                <MyButton
-                    onClick={deletePostHandler}
-                    color={'red'}
-                >
+            <div className={style.postButtons}>
+                <MyButton onClick={deletePostHandler} color={'green'}>
+                    Open
+                </MyButton>
+                <MyButton onClick={deletePostHandler} color={'red'}>
                     Delete
                 </MyButton>
+
             </div>
         </div>
     );
