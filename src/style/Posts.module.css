@@ -13,24 +13,4 @@ hr {
     width: 100%;
 }
 
-.Pagination {
-    display: flex;
-    flex-direction: row;
-    margin: 20px 0 20px 0;
-}
-
-.page {
-    padding: 10px;
-    border: 1px solid teal;
-    cursor: pointer;
-
-}
-
-.currentPage {
-    border: 2px solid orange;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-}
-
 

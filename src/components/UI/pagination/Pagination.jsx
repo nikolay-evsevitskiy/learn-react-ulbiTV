@@ -1,5 +1,5 @@
 import React from 'react';
-import style from "../../../style/App.module.css";
+import style from "./Pagination.module.css";
 import {MyButton} from "../button/MyButton";
 
 const Pagination = (props) => {
@@ -8,7 +8,7 @@ const Pagination = (props) => {
 
     }
     return (
-        <div className={style.Pagination}>
+        <div className={style.pagination}>
             {props.pagesArray.map(p =>
                 <MyButton
                     className={props.page === p ? style.currentPage : style.page}
