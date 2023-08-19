@@ -1,17 +1,11 @@
 import React from 'react';
-import {Link, Outlet} from "react-router-dom";
-import style from "./style/Posts.module.css";
+import {Outlet} from "react-router-dom";
+import NavBar from "./components/UI/navbar/NavBar";
 
 
 function App() {
     return <>
-        <div className={style.navbar}>
-            <div className={style.navbarItem}>
-                <Link to="/about">About</Link>
-                <br/>
-                <Link to="/posts">Posts</Link>
-            </div>
-        </div>
+        <NavBar/>
         <Outlet/>
     </>
 
